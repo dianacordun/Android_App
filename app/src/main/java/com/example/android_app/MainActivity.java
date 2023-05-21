@@ -6,17 +6,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.Query;
 
 public class MainActivity extends AppCompatActivity {
-
     FloatingActionButton addSoppingListBtn;
     RecyclerView recyclerView;
     ImageButton menuBtn;
@@ -33,6 +39,29 @@ public class MainActivity extends AppCompatActivity {
 
         addSoppingListBtn.setOnClickListener((v) -> startActivity(new Intent(MainActivity.this, ShoppingListDetailsActivity.class)));
         menuBtn.setOnClickListener((v)->showMenu() );
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            try {
+                Thread.sleep(1000);
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user == null) {
+                    // User is not signed in, redirect to the login screen
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                    return;
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return;
+        }
+
         setupRecyclerView();
     }
 

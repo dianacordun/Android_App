@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:background="@drawable/rounded_corner"
-            android:hint="Email Id"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textSize="20sp" />
@@ -89,6 +89,23 @@
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="OR"
+            android:textColor="@color/dark_purple"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/google_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:src="@drawable/google" />
 
     </LinearLayout>
 

@@ -25,6 +25,7 @@ public class Utility {
 
     static CollectionReference getCollectionReferenceForLists(){
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         return FirebaseFirestore.getInstance().collection("shopping_lists")
                 .document(currentUser.getUid()).collection("my_lists");
     }
