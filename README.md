@@ -1,4 +1,4 @@
-# Android_App
+# Android Shopping List App
 Aplicatie mobila de tip Shopping List pentru Android (Java).
 + Autentificare
 + Firestore Database
